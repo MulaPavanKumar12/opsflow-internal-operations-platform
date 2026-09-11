@@ -1,0 +1,1 @@
+Add tests under backend/src/test/java when extending the project.

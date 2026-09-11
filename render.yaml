@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: opsflow-api
+    runtime: docker
+    rootDir: backend
+    plan: free
+
+  - type: web
+    name: opsflow-ui
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://opsflow-api.onrender.com
