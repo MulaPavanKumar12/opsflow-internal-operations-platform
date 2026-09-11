@@ -94,9 +94,31 @@ function App() {
           </div>
           <div className="table-wrap">
             <table><thead><tr><th>ID</th><th>REQUEST</th><th>REQUESTER</th><th>PRIORITY</th><th>STATUS</th><th></th></tr></thead>
-            <tbody>{loading ? <tr><td colSpan={6} className="empty">Loading requests…</td> : filtered.map(r=><tr key={r.id} onClick={()=>setSelected(r)}>
-              <td className="id">#{r.id}</td><td><b>{labelType(r.type)}</b><small>{r.application}</small></td><td>{r.requester}</td><td><span className={`priority ${r.priority.toLowerCase()}`}>{r.priority}</span></td><td><StatusBadge status={r.status}/></td><td><ChevronRight size={17}/></td>
-            </tr>)}</tbody></table>
+            <tbody>
+  {loading ? (
+    <tr>
+      <td colSpan={6} className="empty">Loading requests…</td>
+    </tr>
+  ) : (
+    filtered.map(r => (
+      <tr key={r.id} onClick={() => setSelected(r)}>
+        <td className="id">#{r.id}</td>
+        <td>
+          <b>{labelType(r.type)}</b>
+          <small>{r.application}</small>
+        </td>
+        <td>{r.requester}</td>
+        <td>
+          <span className={`priority ${r.priority.toLowerCase()}`}>
+            {r.priority}
+          </span>
+        </td>
+        <td><StatusBadge status={r.status} /></td>
+        <td><ChevronRight size={17} /></td>
+      </tr>
+    ))
+  )}
+</tbody></table>
           </div>
         </div>
 
